@@ -54,7 +54,6 @@ STREAMS = [
     'ads_insights_country',
     'ads_insights_platform_and_device',
     'ads_insights_region',
-    'ads_insights_dma',
 ]
 
 REQUIRED_CONFIG_KEYS = ['start_date', 'account_id', 'access_token']
@@ -70,7 +69,6 @@ BOOKMARK_KEYS = {
     'ads_insights_country': START_DATE_KEY,
     'ads_insights_platform_and_device': START_DATE_KEY,
     'ads_insights_region': START_DATE_KEY,
-    'ads_insights_dma': START_DATE_KEY,
 }
 
 LOGGER = singer.get_logger()
@@ -457,7 +455,7 @@ class AdsInsights(Stream):
     bookmark_key = START_DATE_KEY
 
     invalid_insights_fields = ['impression_device', 'publisher_platform', 'platform_position',
-                               'age', 'gender', 'country', 'placement', 'region', 'dma']
+                               'age', 'gender', 'country', 'placement', 'region']
 
     # pylint: disable=no-member,unsubscriptable-object,attribute-defined-outside-init
     def __attrs_post_init__(self):
@@ -469,7 +467,7 @@ class AdsInsights(Stream):
     def job_params(self):
         start_date = get_start(self, self.bookmark_key)
 
-        buffer_days = 28
+        buffer_days = 2
         if CONFIG.get('insights_buffer_days'):
             buffer_days = int(CONFIG.get('insights_buffer_days'))
 
@@ -502,7 +500,7 @@ class AdsInsights(Stream):
             is_async=True)
         status = None
         time_start = time.time()
-        sleep_time = 10
+        sleep_time = 20
         while status != "Job Completed":
             duration = time.time() - time_start
             job = job.api_get()
