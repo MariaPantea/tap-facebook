@@ -53,7 +53,6 @@ STREAMS = [
     'ads_insights_age_and_gender',
     'ads_insights_country',
     'ads_insights_platform_and_device',
-    'ads_insights_region',
 ]
 
 REQUIRED_CONFIG_KEYS = ['start_date', 'account_id', 'access_token']
@@ -68,7 +67,6 @@ BOOKMARK_KEYS = {
     'ads_insights_age_and_gender': START_DATE_KEY,
     'ads_insights_country': START_DATE_KEY,
     'ads_insights_platform_and_device': START_DATE_KEY,
-    'ads_insights_region': START_DATE_KEY,
 }
 
 LOGGER = singer.get_logger()
@@ -467,7 +465,7 @@ class AdsInsights(Stream):
     def job_params(self):
         start_date = get_start(self, self.bookmark_key)
 
-        buffer_days = 2
+        buffer_days = 1
         if CONFIG.get('insights_buffer_days'):
             buffer_days = int(CONFIG.get('insights_buffer_days'))
 
@@ -562,15 +560,11 @@ INSIGHTS_BREAKDOWNS_OPTIONS = {
     'ads_insights': {"breakdowns": []},
     'ads_insights_age_and_gender': {"breakdowns": ['age', 'gender'],
                                     "primary-keys": ['age', 'gender']},
-    'ads_insights_country': {"breakdowns": ['country']},
+    'ads_insights_country': {"breakdowns": ['region', 'country']},
     'ads_insights_platform_and_device': {"breakdowns": ['publisher_platform',
                                                         'platform_position', 'impression_device'],
                                          "primary-keys": ['publisher_platform',
-                                                          'platform_position', 'impression_device']},
-    'ads_insights_region': {'breakdowns': ['region'],
-                            'primary-keys': ['region']},
-    'ads_insights_dma': {"breakdowns": ['dma'],
-                         "primary-keys": ['dma']},
+                                                          'platform_position', 'impression_device']}
 }
 
 

@@ -42,6 +42,12 @@
         "string"
       ]
     },
+    "region": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
     "country": {
       "type": [
         "null",
@@ -78,7 +84,12 @@
         "number"
       ]
     },
-
+    "unique_link_clicks_ctr": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
     "unique_inline_link_clicks": {
       "type": [
         "null",
