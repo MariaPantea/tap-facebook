@@ -36,6 +36,12 @@
         "string"
       ]
     },
+    "ad_name": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
     "account_id": {
       "type": [
         "null",
