@@ -36,6 +36,12 @@
         "string"
       ]
     },
+    "ad_name": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
     "account_id": {
       "type": [
         "null",
@@ -90,6 +96,7 @@
         "number"
       ]
     },
+    "actions": {"$ref": "ads_action_stats.json"},
     "unique_link_clicks_ctr": {
       "type": [
         "null",
