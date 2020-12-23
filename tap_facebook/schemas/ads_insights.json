@@ -72,6 +72,7 @@
         "number"
       ]
     },
+    "actions": {"$ref": "ads_action_stats.json"},
     "unique_link_clicks_ctr": {
       "type": [
         "null",
